@@ -15,3 +15,9 @@ stop:
 
 bootstrap:
 		sh scripts/bootstrap.sh
+
+console:
+		docker compose exec api bin/rails console
+
+bash:
+		docker compose exec api bash
