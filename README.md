@@ -9,22 +9,24 @@ Here is a small Rails application with single API endpoint which returns disburs
 
 ## Installation
 
-1. Build the application image using Dockerfile from current directory
+1. Put `merchants.json`, `shoppers.json` and `orders.json` from the dataset into `tmp/` folder
+
+2. Build the application image using Dockerfile from current directory
 
 ```
 make build
 ```
 
-2. Create and run containers for Rails and PostgreSQL applications. Wait until both applications running
+3. Create and run containers for Rails and PostgreSQL applications. Wait until both applications running
 
 ```
 make up
 ```
 
-3. Make initial setup of the application (create databases)
+4. Make initial setup of the application (create databases, run migrations, populate development database)
 
 ```
 make bootstrap
 ```
 
-4. Go to the browser and open `http://localhost:3000`
+4. Go to the browser and open `http://localhost:3000?merchant=1&week=1`
