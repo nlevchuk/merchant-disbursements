@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_140346) do
     t.bigint "merchant_id", null: false
     t.bigint "shopper_id", null: false
     t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "EUR", null: false
+    t.string "currency", default: "EUR", null: false
     t.datetime "created_at", null: false
     t.datetime "completed_at"
     t.index ["merchant_id"], name: "index_orders_on_merchant_id"

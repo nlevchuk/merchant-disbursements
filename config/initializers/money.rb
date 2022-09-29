@@ -5,6 +5,14 @@ MoneyRails.configure do |config|
 
   config.rounding_mode = BigDecimal::ROUND_HALF_EVEN
 
+  config.currency_column = {
+    column_name: 'currency',
+    type: :string,
+    present: true,
+    null: false,
+    default: 'EUR'
+  }
+
   # Set default money format globally.
   # Default value is nil meaning "ignore this option".
   # Example:
