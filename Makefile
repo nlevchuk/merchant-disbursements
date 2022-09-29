@@ -21,3 +21,8 @@ console:
 
 bash:
 		docker compose exec api bash
+
+test:
+		docker compose exec api bin/rails test
+
+.PHONY: test
