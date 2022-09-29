@@ -20,7 +20,7 @@ namespace :db do
       record = Order.new(order)
 
       if (record.completed?)
-        calculator = DisbursementCalculator.new(record.amount)
+        calculator = OrderDisbursedAmountCalculator.new(record.amount)
         record.disbursed_amount = calculator.calculate_disbursed_amount()
       end
 

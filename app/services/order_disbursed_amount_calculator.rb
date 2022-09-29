@@ -1,4 +1,4 @@
-class DisbursementCalculator
+class OrderDisbursedAmountCalculator
   def initialize(amount)
     @amount = amount
   end

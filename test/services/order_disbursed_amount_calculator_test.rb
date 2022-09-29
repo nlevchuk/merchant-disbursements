@@ -1,11 +1,11 @@
 require "test_helper"
 
-describe DisbursementCalculator do
+describe OrderDisbursedAmountCalculator do
   describe "calculate disbursed amount with fee" do
     describe "when original amount less than 50" do
       before do
         @original_amount = Money.from_cents(4500)
-        @calculator = DisbursementCalculator.new(@original_amount)
+        @calculator = OrderDisbursedAmountCalculator.new(@original_amount)
       end
 
       it "returns 1% fee" do
@@ -25,7 +25,7 @@ describe DisbursementCalculator do
     describe "when original amount between 50 and 300" do
       before do
         @original_amount = Money.from_cents(25700)
-        @calculator = DisbursementCalculator.new(@original_amount)
+        @calculator = OrderDisbursedAmountCalculator.new(@original_amount)
       end
 
       it "returns 0.95% fee" do
@@ -45,7 +45,7 @@ describe DisbursementCalculator do
     describe "when original amount greater than 300" do
       before do
         @original_amount = Money.from_cents(30100)
-        @calculator = DisbursementCalculator.new(@original_amount)
+        @calculator = OrderDisbursedAmountCalculator.new(@original_amount)
       end
 
       it "returns 0.85% fee" do

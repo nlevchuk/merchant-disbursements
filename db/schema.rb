@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_28_140346) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_29_075843) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "disbursements", force: :cascade do |t|
+    t.bigint "merchant_id", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "currency", default: "EUR", null: false
+    t.string "week", null: false
+    t.index ["merchant_id", "week"], name: "idx_merchant_disbursements_per_week", unique: true
+  end
 
   create_table "merchants", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_140346) do
     t.string "nif", null: false
   end
 
+  add_foreign_key "disbursements", "merchants"
   add_foreign_key "orders", "merchants"
   add_foreign_key "orders", "shoppers"
 end
