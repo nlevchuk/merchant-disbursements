@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_140346) do
     t.string "currency", default: "EUR", null: false
     t.datetime "created_at", null: false
     t.datetime "completed_at"
+    t.integer "disbursed_amount_cents"
     t.index ["merchant_id"], name: "index_orders_on_merchant_id"
     t.index ["shopper_id"], name: "index_orders_on_shopper_id"
   end

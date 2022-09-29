@@ -1,21 +1,30 @@
+def read_data_from_file(filename)
+  path = File.join(File.dirname(__FILE__), "../../tmp/#{filename}.json")
+  JSON.parse(File.read(path))["RECORDS"]
+end
+
 namespace :db do
   desc "Populate database from given dataset JSONs"
   task :populate => :environment do
-    merchants_path = File.join(File.dirname(__FILE__), "../../tmp/merchants.json")
-    merchants = JSON.parse(File.read(merchants_path))["RECORDS"]
+    merchants = read_data_from_file("merchants")
     Merchant.insert_all(merchants)
     puts "Merchants table has been populated"
 
-    shoppers_path = File.join(File.dirname(__FILE__), "../../tmp/shoppers.json")
-    shoppers = JSON.parse(File.read(shoppers_path))["RECORDS"]
+    shoppers = read_data_from_file("shoppers")
     Shopper.insert_all(shoppers)
     puts "Shoppers table has been populated"
 
-    orders_path = File.join(File.dirname(__FILE__), "../../tmp/orders.json")
-    orders = JSON.parse(File.read(orders_path))["RECORDS"]
+    orders = read_data_from_file("orders")
     orders.each do |order|
       order["amount"] = order["amount"].to_money
-      Order.create(order)
+      record = Order.new(order)
+
+      if (record.completed?)
+        calculator = DisbursementCalculator.new(record.amount)
+        record.disbursed_amount = calculator.calculate_disbursed_amount()
+      end
+
+      record.save!
       print "."
     end
     puts "\nOrders table has been populated"
