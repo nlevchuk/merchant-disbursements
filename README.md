@@ -56,7 +56,7 @@ I used two columns for two reasons:
 - There are rounding errors when working with floating point numbers. So I persisted amount column in cents (Integer type)
 - I used `Money` gem which provides methods to work with monetary values and it requires two columns (cents and currency)
 
-## Should I calculate order disbursed amount beforehand and persist it in the orders table?
+### Should I calculate order disbursed amount beforehand and persist it in the orders table?
 
 There were two options here:
 - Calculate disbursed amount when order gets completed and persist it, or
