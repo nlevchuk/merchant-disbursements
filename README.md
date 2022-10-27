@@ -48,11 +48,11 @@ make test
 
 ### Which language to use? Ruby or JavaScript?
 
-I used JS for the past 4 years but current position requires Ruby. So I decided to revise my knowledge
+I have been using JS for the past 4 years but current position requires Ruby. So I decided to revise my knowledge about it
 
 ### Does the amount value should be persisted as a single column (floating point type) or as two columns (cents and currency)?
 
-I used two columns for two reasons:
+I used two columns for the two reasons:
 - There are rounding errors when working with floating point numbers. So I persisted amount column in cents (Integer type)
 - I used `Money` gem which provides methods to work with monetary values and it requires two columns (cents and currency)
 
